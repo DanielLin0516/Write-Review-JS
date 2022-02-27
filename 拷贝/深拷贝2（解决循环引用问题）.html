@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const obj = {
+            a: 1,
+            b: ['e', 'f', 'g'],
+            c: { h: 20 },
+            d: function () { }
+        }
+        function deepClone3(target,map = new Map()) {
+            if (typeof target === 'object' && target !== null) {
+                //克隆数据前，进行判断，数据之前是否克隆过
+                let cache = map.get(target);
+                if(cache) {
+                    return cache;
+                }
+                //创建容器
+                const result = Array.isArray(target) ? [] : {};
+                //新的结果存储容器
+                map.set(target,result);
+                //遍历对象
+                for (let key in target) {
+                    if (target.hasOwnProperty(key)) {
+                        //拷贝
+                        result[key] = deepClone3(target[key],map);
+                    }
+                }
+                return result;
+            } else {
+                return target;
+            }
+        }
+        obj.b.push(obj.c);
+        obj.c.j = obj.b;
+        const result = deepClone3(obj)
+        // result.c.h = 2000
+        console.log(result);
+        console.log(obj);
+    </script>
+</body>
+
+</html>

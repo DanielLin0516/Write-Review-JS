@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const a = Promise.resolve(1);
+        const b = Promise.resolve(2);
+        const c = Promise.reject(3);
+        let arr = [a, b, c];
+        // Promise.all(arr.map(p => { p.catch(e => { console.log(`Error:${e}`) }) })).then(res => {
+        //     console.log(res)
+        // }).catch(error => {
+        //     console.log(error)
+        // })
+        Promise.allSettled(arr).then(res => {
+            console.log(res)
+        })
+    </script>
+</body>
+
+</html>

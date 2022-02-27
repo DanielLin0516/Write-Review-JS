@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div id="container">
+        这是container
+    </div>
+    <button id="pac">patch</button>
+    <script src="./h.js" ></script>
+    <script>
+        let container = document.getElementById("container")
+        let btn = document.getElementById("pac")
+
+        let vnode1 = h('ul',{},[
+            h('li',{key:'a'},'a'),
+            h('li',{key:'b'},'b'),
+            h('li',{key:'c'},'c'),
+            h('li',{key:'d'},'d'),
+
+        ]);
+        patch(container,vnode1)
+        let vnode2 = h('ul',{},[
+        h('li',{key:'a'},'a'),
+            h('li',{key:'b'},'b'),
+            h('li',{key:'c'},'c'),
+            h('li',{key:'d'},'d'),
+            h('li',{key:'e'},'e'),
+        ]);
+        btn.onclick = () => {
+            patch(vnode1,vnode2)
+        }
+
+
+    </script>
+</body>
+</html>

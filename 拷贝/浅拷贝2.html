@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const obj = { x: 'abc', y: { m: 1 } };
+        function clone2(target) {
+            if (typeof target === 'object' && target !== null) {
+                //创建一个容器
+                const result = Array.isArray(target) ? [] : {};
+                //遍历数据
+                for (let key in target) {
+                    if (target.hasOwnProperty(key)) {
+                        result[key] = target[key];
+                    }
+                }
+                return result;
+            } else {
+                return target;
+            }
+        }
+        // obj.y.m = 2;
+        console.log(obj, '123')
+        console.log(clone2(obj))
+    </script>
+</body>
+
+</html>

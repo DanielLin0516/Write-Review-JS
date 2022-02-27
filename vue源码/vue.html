@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+
+<body>
+    <div id="app">
+        {{str}}
+        <button>
+            {{str}}
+        </button>
+        <input type="text" name=""v-model="str">
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                str: '123',
+                a:'a',
+                b:'b',
+            },
+            beforeCreate(){
+                // console.log(this.$data,this.$el)
+            },
+            created(){
+                // console.log(this.$data,this.$el)
+            },
+            beforeMount(){
+                // console.log(this.$data,this.$el)
+            },
+            mounted(){
+                
+                console.log(this)
+            }
+        })
+    </script>
+</body>
+
+</html>

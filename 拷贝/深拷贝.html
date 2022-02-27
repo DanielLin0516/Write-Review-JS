@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj = {
+            a:1,
+            b:['e','f','g'],
+            c:{h:20}
+        }
+        //深拷贝
+        function deepClone1(target) {
+            let str = JSON.stringify(target);
+            let data = JSON.parse(str);
+            return data;
+        }
+        const result = deepClone1(obj);
+        obj.c.h = 2000;
+        console.log(obj);
+        console.log(result)
+
+    </script>
+</body>
+</html>

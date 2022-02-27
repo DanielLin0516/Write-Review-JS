@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>防抖</h1>
+    <input type="text" id="hinput">
+    <script>
+        const input = document.getElementById('hinput')
+        function debounce(fn,delay){
+            let timer = null;
+            return function(){
+                if(timer){
+                    clearTimeout(timer);
+                }
+                timer = setTimeout(() => {
+                    fn.apply(this,arguments)
+                }, delay);
+            }
+        }
+        input.addEventListener('input',debounce(function(e){
+            console.log(e)
+            console.log(this)
+            console.log('111')
+        },500))
+try {
+    
+} catch (error) {
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // const input = document.getElementById('hinput')   更改前
+        // function debounce(fn,delay){
+        //     let timer = null;
+        //     return function(){
+        //         if(timer){
+        //             clearTimeout(timer)
+        //         }
+        //         timer = setTimeout(() => {
+        //             fn()                    
+        //         }, delay);
+
+        //     }
+        // }
+        // input.addEventListener('input',debounce(() => {
+        //     console.log('发送请求')
+        // },500))
+
+
+
+        // 更改后
+        // const input = document.getElementById('hinput')   
+        // function debounce(fn,delay){
+        //     let timer = null;
+        //     return function(e){
+        //         if(timer){
+        //             clearTimeout(timer)
+        //         }
+        //         timer = setTimeout(() => {
+        //             fn.apply(this,arguments)                   
+        //         }, delay);
+        //     }
+        // }
+        // input.addEventListener('input',debounce(function(e)  {
+        //     console.log(this)
+        //     console.log(e)
+        //     console.log('发送请求')
+        // },500))
+    </script>
+</body>
+
+</html>

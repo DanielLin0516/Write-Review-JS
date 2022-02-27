@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [1,2,3,4,5,6,7];
+        const chunk = (arr,size = 1) => {
+            let result = [];
+            let temp = [];
+            arr.forEach(item => {
+                if(temp.length === 0) {
+                    result.push(temp)
+                }
+                temp.push(item);
+                if(temp.length === size) {
+                    temp = [];
+                }
+            });
+            return result
+        }
+        console.log(chunk([1,2,3,4,5,6,7],3))
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const difference = (arr1,arr2) => {
+            if(arr1.length === 0) {
+                return []
+            }
+            if(arr2.length === 0){
+                return arr1.slice();
+            }
+            const result = arr1.filter(item => !arr2.includes(item));
+            return result;
+        }
+        console.log(difference([1,2,3],[13,2,4]))
+    </script>
+
+</body>
+
+</html>

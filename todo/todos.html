@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>TODOList</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            margin: 30px 0 0 0;
+            color: #ff5550;
+            text-align: center;
+            font-size: 60px;
+        }
+
+        #back {
+            width: 300px;
+            margin: 0 auto;
+            border: 1px solid #333;
+            box-shadow: 0px 0px 3px #999;
+            background-color: #fff;
+        }
+
+        #back input {
+            width: 100%;
+            box-sizing: border-box;
+            line-height: 30px;
+            border: none;
+            border-bottom: 1px solid #000;
+            padding: 5px 15px;
+            font-size: 18px;
+        }
+
+        #list_back .single {
+            position: relative;
+            border-bottom: 1px solid #000;
+        }
+
+        #list_back .single p {
+            width: 100%;
+            height: 30px;
+            margin: 0;
+            line-height: 30px;
+            padding: 5px 15px;
+        }
+
+        #list_back .single span {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 30px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 18px;
+            color: #000;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>todos</h1>
+    <div id="back">
+        <input id="addInput" type="text" name="">
+        <div id="list_back">
+        </div>
+    </div>
+    <script type="text/javascript">
+        var oAddInput = document.getElementById('addInput');
+        var oList_back = document.getElementById('list_back');
+        var all = document.getElementsByClassName('single');
+        oAddInput.onkeyup = function () {
+            // alert(event.keyCode);//13
+            // alert(event.code);//Enter
+            if (event.keyCode == '13') {
+                // alert('add');
+                var oDiv = document.createElement('div');
+                var oSpan = document.createElement('span');
+                var oP = document.createElement('p');
+                oDiv.appendChild(oP);
+                oDiv.appendChild(oSpan);
+                oP.innerHTML = oAddInput.value;
+                oSpan.innerHTML = '&times;';
+                oDiv.className = 'single';
+                oList_back.appendChild(oDiv);
+                oAddInput.value = '';//清空输入框
+                oSpan.onclick = function () {
+                    oList_back.removeChild(this.parentNode);//绑定删除方法
+                };
+            }
+        };
+        //模糊查询
+        function select() {
+            oAddInput.addEventListener('keyup', function (e) {//监听键盘抬起事件（所有键盘按钮）
+                // console.log(e.target.value);
+                var str = e.target.value;
+                var reg = new RegExp('(' + str + ')', 'g');//匹配到的文字变红色，准备工作
+                for (var i = 0; i < all.length; i++) {
+                    var one = all
+                    [i].getElementsByTagName('p')
+                    [0];
+                    var newStr = one.innerText.replace(reg, '<font color=red>$1</font>');//换-->红色，用innerText防止用innerHTML将标签也读取出来出错。
+                    if (one.innerText.indexOf(str) == -1) {//也选用innerHTML
+                        all
+                        [i].style.display = 'none';//匹配不到的掩藏
+                    } else {
+                        one.innerHTML = newStr;//匹配到的变红
+                    }
+                }
+                if (str == '') {
+                    for (var i = 0; i < all.length; i++) {
+                        all
+                        [i].style.display = 'block';//输入框空时全部显示
+                    }
+                }
+            });
+        }
+        select();  //函数解析完就运行
+
+    </script>
+</body>
+
+</html>
