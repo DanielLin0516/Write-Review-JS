@@ -25,20 +25,6 @@
             });
             return result;
         }
-        let flatttt = (array) => {
-            let res = [];
-            array.forEach(item => {
-                if(Array.isArray(item)) {
-                    res = res.concat(flatttt(item));
-                }else {
-                    res = res.concat(item)
-                }
-            })
-            return res;
-        }
-        console.log(flatten(arr))
-        console.log(flatttt(arr))
     </script>
 </body>
-
 </html>

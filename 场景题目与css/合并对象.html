@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        var obj1 = {
+    a: 1,
+    b: {
+        c: 2,
+        d: 3
+    },
+    e: 4,
+    h: {
+        i: 5
+    }
+}
+var obj2 = {
+    a: 111,
+    b: {
+        c: 222,
+        f: 333
+    },
+    g: 444,
+    h: 666
+}
+
+实现一个mergeObject(obj1, obj2)方法，得到下面的对象，并转化成JSON输出到#app
+var obj = {
+    a: 111,
+    b: {
+        c: 222,
+        d: 3,
+        f: 333
+    },
+    e: 4,
+    g: 444,
+    h: 666
+}
+     -->
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        var obj1 = {
+            a: 1,
+            b: {
+                c: 2,
+                d: 3
+            },
+            e: 4,
+            h: {
+                i: 5
+            }
+        }
+        var obj2 = {
+            a: 111,
+            b: {
+                c: 222,
+                f: 333
+            },
+            g: 444,
+            h: 666
+        }
+        function merge(obj1, obj2) {
+            let deep1 = deep(obj1)
+            let deep2 = deep(obj2)
+            for(let item in deep2) {
+                if(deep1[item] && typeof deep1[item] === "object" && typeof deep2[item] === "object") {
+                    deep1[item] = Object.assign(deep1[item],deep2[item])
+                }else {
+                    deep1[item] = deep2[item];
+                }
+            }
+            return deep1;
+        }
+        function deep(target) {
+            if (typeof target === "object" && target !== null) {
+                const res = Array.isArray(target) ? [] : {};
+                for (let key in target) {
+                    if (target.hasOwnProperty(key)) {
+                        res[key] = deep(target[key]);
+                    }
+                }
+                return res;
+            } else {
+                return target;
+            }
+        }
+        let app = document.getElementById("app");
+        let str = merge(obj1,obj2);
+        app.innerHTML = JSON.stringify(str)
+        
+    </script>
+</body>
+
+</html>

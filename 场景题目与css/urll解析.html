@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        获取 url 中的参数
+ 1. 指定参数名称，返回该参数的值 或者 空字符串
+ 2. 不指定参数名称，返回全部的参数对象 或者 {}
+ 
+  3. 如果存在多个同名参数，则返回数组 
+ 
+  4. 不支持URLSearchParams方法 
+示例1
+输入： http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe key
+输出： [1, 2, 3]
+     -->
+    <script>
+        const url = "http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe key"
+        function urlD(url) {
+            const str = url.split("?")[1].split("#")[0].split("&");
+            let map = new Map();
+            for (let i = 0; i < str.length; i++) {
+                const key = str[i].split("=")[0];
+                const value = str[i].split("=")[1];
+                if (map.has(key)) {
+                    map.get(key).push(value)
+                } else {
+                    map.set(key, [value]);
+                }
+            }
+            for(let item of map.values()) {
+                if(item.length !== 1) {
+                    return item
+                }
+            }
+            // return map
+            
+        }
+        console.log(urlD(url));
+    </script>
+</body>
+
+</html>

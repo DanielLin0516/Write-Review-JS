@@ -53,35 +53,35 @@
 
 
 
-// setTimeout(() => {
-//     console.log(1)
-// }, 0)
+setTimeout(() => {
+    console.log(1)
+}, 0)
 
-// const P = new Promise((resolve, reject) => {
-//     console.log(2)
-//     setTimeout(() => {
-//         resolve()
-//         console.log(3)
-//     }, 0)
-// })
-
-// P.then(() => {
-//     console.log(4)
-// })
-// console.log(5);
-
-var p1 = new Promise(function(resolve, reject){
-    resolve("2")
+const P = new Promise((resolve, reject) => {
+    console.log(2)
+    setTimeout(() => {
+        resolve()
+        console.log(3)
+    }, 0)
 })
 
-setTimeout(function(){
-    console.log("1")
-},10)
-
-p1.then(function(value){
-    console.log(value)
+P.then(() => {
+    console.log(4)
 })
+console.log(5);
 
-setTimeout(function(){
-    console.log("3")
-},0)
+// var p1 = new Promise(function(resolve, reject){
+//     resolve("2")
+// })
+
+// setTimeout(function(){
+//     console.log("1")
+// },10)
+
+// p1.then(function(value){
+//     console.log(value)
+// })
+
+// setTimeout(function(){
+//     console.log("3")
+// },0)

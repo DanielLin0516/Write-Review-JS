@@ -29,6 +29,20 @@
         // obj.y.m = 2;
         console.log(obj, '123')
         console.log(clone2(obj))
+        function clone3(target) {
+            if (typeof target === 'object' && target !== null) {
+                const result = Array.isArray(target) ? [] : {};
+
+                for (let key in target) {
+                    if (target.hasOwnProperty(key)) {
+                        result[key] = target[key]
+                    }
+                }
+
+            } else {
+                return target;
+            }
+        }
     </script>
 </body>
 
