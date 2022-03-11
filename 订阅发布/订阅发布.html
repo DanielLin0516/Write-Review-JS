@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const PubSub = {
+            id: 1,
+            callbacks: {
+
+            }
+        }
+        //订阅
+        PubSub.subscribe = function (channel, callback) {
+            //创建唯一编号
+            let token = `token_${this.id++}`;
+            if (this.callbacks[channel]) {
+                this.callbacks[channel][token] = callback;
+            } else {
+                this.callbacks[channel] = {
+                    [token]: callback
+                }
+            }
+            return token;
+        }
+        //发布
+        PubSub.publish = function (channel, data) {
+            //获取频道回调
+            if(this.callbacks[channel]) {
+                Object.values(this.callbacks[channel]).forEach(callback => {
+                    callback(data)
+                })
+            }
+        }
+        //取消订阅
+        PubSub.unsubscribe = function(flag) {
+            if(flag === undefined) {
+                this.callbacks = {};
+            }else if(typeof flag === 'string') {
+                if(flag.indexOf('token_') === 0) {
+                    //订阅id
+                    let callbackObj = Object.values(this.callbacks).find(obj => {
+                        return obj.hasOwnProperty(flag)
+                    })
+                    //判断
+                    if(callbackObj) {
+                        delete callbackObj[flag]
+                    }
+                }else {
+                    //频道名称
+                    delete this.callbacks[flag]
+                }
+            }
+        }
+
+        let pid = PubSub.subscribe('pay', data => {
+            console.log('商家接到了订单，准备开始制作',data)
+        })
+        let pid2 = PubSub.subscribe('pay', data => {
+            console.log('骑手接到了订单，准备开始取餐',data)
+        })
+         PubSub.subscribe('cancle', data => {
+            console.log('骑手接到了订单，准备开始取餐',data)
+        })
+        console.log(PubSub)
+        PubSub.publish('pay', {
+            title: '鱼香肉丝',
+            price: 20,
+            pos: '三年二班'
+        })
+        PubSub.unsubscribe(pid2)
+        console.log(PubSub)
+    </script>
+</body>
+
+</html>

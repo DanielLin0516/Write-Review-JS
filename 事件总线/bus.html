@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const eventBus = {
+            callbacks:{}
+        };
+        //绑定事件
+        eventBus.on = function(type,callback) {
+            //判断
+            if(this.callbacks[type]) {
+                this.callbacks[type].push(callback)
+            }else {
+                //如果callbacks属性不存在该类型事件
+                this.callbacks[type] = [callback];
+            }
+        }
+        //触发事件
+        eventBus.emit = function(type,data) {
+            if(this.callbacks[type] && this.callbacks[type].length > 0) {
+                //遍历数组
+                this.callbacks[type].forEach(callback => {
+                    callback(data);
+                })
+            }
+        }
+        eventBus.off = function(eventName) {
+            //若传入eventName事件
+            if(eventName) {
+                delete this.callbacks[eventName];
+            }else {
+                this.callbacks = {};
+            }
+        }
+        eventBus.on('login',data => {
+            console.log(data+'用户登录')
+        })
+        eventBus.emit('login','哦哦哦哦哦')
+    </script>
+</body>
+</html>
