@@ -32,27 +32,27 @@
         //发布
         PubSub.publish = function (channel, data) {
             //获取频道回调
-            if(this.callbacks[channel]) {
+            if (this.callbacks[channel]) {
                 Object.values(this.callbacks[channel]).forEach(callback => {
                     callback(data)
                 })
             }
         }
         //取消订阅
-        PubSub.unsubscribe = function(flag) {
-            if(flag === undefined) {
+        PubSub.unsubscribe = function (flag) {
+            if (flag === undefined) {
                 this.callbacks = {};
-            }else if(typeof flag === 'string') {
-                if(flag.indexOf('token_') === 0) {
+            } else if (typeof flag === 'string') {
+                if (flag.indexOf('token_') === 0) {
                     //订阅id
                     let callbackObj = Object.values(this.callbacks).find(obj => {
                         return obj.hasOwnProperty(flag)
                     })
                     //判断
-                    if(callbackObj) {
+                    if (callbackObj) {
                         delete callbackObj[flag]
                     }
-                }else {
+                } else {
                     //频道名称
                     delete this.callbacks[flag]
                 }
@@ -60,13 +60,13 @@
         }
 
         let pid = PubSub.subscribe('pay', data => {
-            console.log('商家接到了订单，准备开始制作',data)
+            console.log('商家接到了订单，准备开始制作', data)
         })
         let pid2 = PubSub.subscribe('pay', data => {
-            console.log('骑手接到了订单，准备开始取餐',data)
+            console.log('骑手接到了订单，准备开始取餐', data)
         })
-         PubSub.subscribe('cancle', data => {
-            console.log('骑手接到了订单，准备开始取餐',data)
+        PubSub.subscribe('cancle', data => {
+            console.log('骑手接到了订单，准备开始取餐', data)
         })
         console.log(PubSub)
         PubSub.publish('pay', {
