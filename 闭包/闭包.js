@@ -19,3 +19,9 @@ function second() {
 }
 first();
 
+function test() {
+  let i = 1;
+  return i + 1;
+}
+test()
+console.log(test())
