@@ -23,6 +23,12 @@ function unique2(arr) {
     });
     return result;
 }
+function unique1(arr) {
+    return arr.filter((item, index, array) => {
+      return array.indexOf(item) === index;
+    });
+  }
 console.log(unique(arr))
 //数组去重3
-console.log(new Set(...arr))
+console.log([...new Set(arr)])
+console.log(unique1(arr))
