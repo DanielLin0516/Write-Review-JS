@@ -30,7 +30,7 @@ const dealwith = async (number) => {
             num++;
             console.log(`并发量${pools.length},${index}被替换`)
             await run(pools);
-        }else return
+        }
     }
     run(pools);
 }
