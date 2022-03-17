@@ -19,7 +19,7 @@
             b: [2, 3],
             c: 'foo'
         }
-        console.log(obj['a'],obj.a)
+        console.log(obj['a'], obj.a)
         console.log()
         function mergeObject(...obj) {
             const result = {};
@@ -27,16 +27,16 @@
                 //获取当前对象所有属性
                 Object.keys(obj).forEach(key => {
                     //监测result是否存在key属性
-                    if(result.hasOwnProperty(key)) {
-                        result[key] = [].concat(result[key],obj[key]);
-                    }else {
+                    if (result.hasOwnProperty(key)) {
+                        result[key] = [].concat(result[key], obj[key]);
+                    } else {
                         result[key] = obj[key];
                     }
                 })
             })
             return result;
         }
-        console.log(mergeObject(obj,other))
+        console.log(mergeObject(obj, other))
     </script>
 </body>
 
