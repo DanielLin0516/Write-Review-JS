@@ -93,20 +93,43 @@
 //     })
 // }
 // Promise.retry(result, 3);
-const sum = (...args) => {
-    return args.reduce((prev,cur) => {
-        return prev + cur;
-    },0)
+// const sum = (...args) => {
+//     return args.reduce((prev,cur) => {
+//         return prev + cur;
+//     },0)
+// }
+// const curring = (fn) => {
+//     let arr = [];
+//     return function result(...rest) {
+//         if(rest.length == 0) {
+//             return fn(...arr);
+//         }else {
+//             arr.push(...rest);
+//             return result;
+//         }
+//     }
+// }
+// console.log(curring(sum)(1,2)(3,4)(5,6,7)())
+// const readline = require('readline')
+// const rl = readline.createInterface({
+//     input: process.stdin,
+//     ouput: process.stdout
+// })
+// let inArr = [2,
+//     5, 1,
+//     6, 2,
+//     5 ,7]
+// rl.on('line', line => {
+//     // if (!line) return;
+//     console.log(1)
+// })
+var a = 1
+function foo () {
+  var a = 2
+  function inner () { 
+    console.log(this.a)
+  }
+  inner()
 }
-const curring = (fn) => {
-    let arr = [];
-    return function result(...rest) {
-        if(rest.length == 0) {
-            return fn(...arr);
-        }else {
-            arr.push(...rest);
-            return result;
-        }
-    }
-}
-console.log(curring(sum)(1,2)(3,4)(5,6,7)())
+
+foo()
