@@ -1,53 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         // 模拟一百条数据
-    const message = new Array(100).fill("");
-    for (let i = 0; i < 100; i++) {
-        message[i] = "第" + i + "条数据";
-    }
-    // 模拟请求一千条数据
-    function axiosGet(idx) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(message[idx]);
-            }, 1000 * Math.random());
-        });
-    }
-
-    // async + promise
-    async function asyncProcess(max = 10) {
-        const task = [];
-        const ans = [];
-
+        const message = new Array(100).fill("");
         for (let i = 0; i < 100; i++) {
-            const p = axiosGet(i).then(res => {
-                console.log(res, task.length);
-                ans.push(res);
-                task.splice(task.indexOf(p), 1);
-            });
-            task.push(p);
-
-            if (task.length === max) {
-                await Promise.race(task);
-            }
+            message[i] = "第" + i + "条数据";
         }
-
-        await Promise.allSettled(task);
-        return ans;
-    }
-
-    asyncProcess().then(res=>{
-        console.log(res);
-    })
-
+        // 模拟请求一千条数据
+        function axiosGet(idx) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(message[idx]);
+                }, 1000 * Math.random());
+            });
+        }
+        // async + promise
+        async function Process(max = 10) {
+            let pools = [];
+            let result = [];
+            for(let i = 0 ; i < 100;  i++) {
+                let p = axiosGet(i).then(res => {
+                    console.log(res,pools.length);
+                    result.push(res);
+                    pools.splice(pools.indexOf(p),1);
+                })
+                pools.push(p);
+                if(pools.length === max) {
+                    await Promise.race(pools);
+                }
+            }
+            await Promise.allSettled(pools);
+            return result;
+        }
+        Process().then(res => {
+            console.log(res)
+        })
     </script>
 </body>
+
 </html>

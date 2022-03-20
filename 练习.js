@@ -17,12 +17,12 @@
 //     }
 // }
 // console.log(curring(currySum)(1,2)(3,4)(5)()) 
-// const obj = {
-//     a: 1,
-//     b: ['e', 'f', 'g'],
-//     c: { h: 20 },
-//     d: function () { }
-// }
+const obj = {
+    a: 1,
+    b: ['e', 'f', 'g'],
+    c: { h: 20 },
+    d: function () { }
+}
 // function deep(target,map = new Map()) {
 //     if(typeof target === 'object' && target !== null) {
 //         let cache = map.get(target);
@@ -123,13 +123,93 @@
 //     // if (!line) return;
 //     console.log(1)
 // })
-var a = 1
-function foo () {
-  var a = 2
-  function inner () { 
-    console.log(this.a)
-  }
-  inner()
-}
+// var a = 1
+// function foo () {
+//   var a = 2
+//   function inner () { 
+//     console.log(this.a)
+//   }
+//   inner()
+// }
 
-foo()
+// foo()
+// arr = [1, 2, 3];
+// function sleep(time) {
+//   return new Promise((res) => {
+//     setTimeout(() => {
+//       res();
+//     }, time);
+//   })
+// }
+// sleep(2000).then(() => {
+//   console.log(123)
+// })
+
+// let p = Promise.resolve();
+// for(let i=0; i<6; i++) {
+//     p = p.then(()=>{
+//         return new Promise((resolve,reject)=>{
+//             setTimeout(()=>{
+//                 console.log(i);
+//                 resolve();
+//             },1000)
+//         })
+//     });
+// }
+// const message = new Array(100).fill("");
+// for (let i = 0; i < 100; i++) {
+//     message[i] = "第" + i + "条数据";
+// }
+// // 模拟请求一千条数据
+// function axiosGet(idx) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve(message[idx]);
+//         }, 1000 * Math.random());
+//     });
+// }
+// async function resolve1() {
+//   let p = axiosGet(1).then(res => {
+//     console.log(res);
+//   });
+//   console.log(p)
+// }
+// resolve1().then(res => {
+//   console.log(res)
+// })
+// const sum = (...args) => {
+//   return args.reduce((p,v) => {
+//     return p + v;
+//   },0)
+// }
+// const currying = (fn) => {
+//   let args = [];
+//   return function result(...rest) {
+//     if(rest.length === 0) {
+//       return fn(...args);
+//     }else {
+//       args.push(...rest);
+//       return result;
+//     }
+//   }
+// }
+// console.log(currying(sum)(1)(2,3,4)())
+// function deep(target,map = new Map()) {
+//   if (typeof target === 'object' && target !== null) {
+//     let cache = map.get(target);
+//     if(cache) {
+//       return cache;
+//     }
+//     let result = Array.isArray(target) ? [] : {};
+//     map.set(target,result);
+//     for (let key in target) {
+//       if (target.hasOwnProperty(key)) {
+//         result[key] = deep(target[key]);
+//       }
+//     }
+//     return result;
+//   } else {
+//     return target;
+//   }
+// }
+// console.log(deep(obj))
