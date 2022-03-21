@@ -156,60 +156,30 @@ const obj = {
 //         })
 //     });
 // }
-// const message = new Array(100).fill("");
-// for (let i = 0; i < 100; i++) {
-//     message[i] = "第" + i + "条数据";
-// }
-// // 模拟请求一千条数据
-// function axiosGet(idx) {
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             resolve(message[idx]);
-//         }, 1000 * Math.random());
-//     });
-// }
-// async function resolve1() {
-//   let p = axiosGet(1).then(res => {
-//     console.log(res);
-//   });
-//   console.log(p)
-// }
-// resolve1().then(res => {
-//   console.log(res)
-// })
-// const sum = (...args) => {
-//   return args.reduce((p,v) => {
-//     return p + v;
-//   },0)
-// }
-// const currying = (fn) => {
-//   let args = [];
-//   return function result(...rest) {
-//     if(rest.length === 0) {
-//       return fn(...args);
-//     }else {
-//       args.push(...rest);
-//       return result;
-//     }
-//   }
-// }
-// console.log(currying(sum)(1)(2,3,4)())
-// function deep(target,map = new Map()) {
-//   if (typeof target === 'object' && target !== null) {
-//     let cache = map.get(target);
-//     if(cache) {
-//       return cache;
-//     }
-//     let result = Array.isArray(target) ? [] : {};
-//     map.set(target,result);
-//     for (let key in target) {
-//       if (target.hasOwnProperty(key)) {
-//         result[key] = deep(target[key]);
-//       }
-//     }
-//     return result;
-//   } else {
-//     return target;
-//   }
-// }
-// console.log(deep(obj))
+const message = new Array(100).fill("");
+for (let i = 0; i < 100; i++) {
+    message[i] = "第" + i + "条数据";
+}
+// 模拟请求一千条数据
+function axiosGet(idx) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(message[idx]);
+        }, 1000 * Math.random());
+    });
+}
+async function send() {
+    try {
+        let r1 = await axiosGet(1);
+        setTimeout(() => {
+            if(r1) {
+                console.log(r1)
+            }else {
+                console.log('没回来')
+            }
+        }, 200);
+    } catch (error) {
+        console.log(error)
+    }
+}
+console.log(send())
