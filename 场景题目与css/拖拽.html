@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1 {
+            width: 200px;
+            line-height: 200px;
+            background-color:red;
+            text-align: center;
+        }
+        .box2 {
+            width: 200px;
+            height:200px;
+            border: 10px dashed black;
+            text-align: center;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box2::before {
+            content: "放置位置";
+            position: absolute;
+
+            z-index: -1;
+        }
+        .dragover {
+            border: 10px dashed red !important;
+        }
+        .drop{
+            border:10px solid green !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1" draggable="true">
+        被拖动对象
+    </div>
+    <div class="box2" draggable="true">
+    </div>
+    <script>
+        let box1 = document.querySelector(".box1");
+        let box2 = document.querySelector(".box2");
+        box1.addEventListener('dragstart',(e) => {
+            e.dataTransfer.setData("text",e.target.className)
+            console.log('dragstart')
+        })
+        box1.addEventListener('dragend',() => {
+            console.log('dragend')
+        })
+        box2.addEventListener('dragover',(e) => {
+            console.log('dragover');
+            box2.classList.add("dragover")
+            e.preventDefault();
+        })
+        box2.addEventListener('dragleave',(e) => {
+            console.log('dragleave');
+            box2.classList.remove("dragover")
+            e.preventDefault();
+        })
+        box2.addEventListener('dragenter',(e) => {
+            console.log('dragenter');
+            e.preventDefault();
+        })
+        box2.addEventListener('drop',(e) => {
+            let data = e.dataTransfer.getData("text")
+            console.log(data)
+            box2.appendChild(document.querySelector(`.${data}`));
+            box2.classList.add("drop")
+        })
+    </script>
+</body>
+</html>

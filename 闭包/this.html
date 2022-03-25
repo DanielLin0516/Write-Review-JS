@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var a = 10;
+        // function foo() {
+        //     var a = 20
+        //     console.log('this1', this)
+        //     console.log(window.a)
+        //     console.log(this.a)
+        // }
+        // console.log('this2', this)
+        // foo();
+
+        // let a = 10
+        // const b = 20
+
+        // function foo() {
+        //     console.log(this.a)
+        //     console.log(this.b)
+        // }
+        // foo();
+        // console.log(window.a)
+
+        // var a = 1
+        // function foo() {
+        //     var a = 2
+        //     console.log(this)
+        //     console.log(this.a)
+        // }
+
+        // foo()
+
+
+        // function foo() {
+        //     console.log(this.a)
+        // }
+        // var obj = { a: 1, foo }
+        // var a = 2
+        // obj.foo()
+
+        // function foo() {
+        //     console.log(this.a)
+        // };
+        // var obj = { a: 1, foo };
+        // var a = 2;
+        // var foo2 = obj.foo;
+
+        // obj.foo();
+        // foo2();
+
+        // function foo() {
+        //     console.log(this.a)
+        // };
+        // var obj = { a: 1, foo };
+        // var a = 2;
+        // var foo2 = obj.foo;
+        // var obj2 = { a: 3, foo2: obj.foo }
+
+        // obj.foo();
+        // foo2();
+        // obj2.foo2();
+
+        // function foo() {
+        //     console.log(this.a)
+        // }
+        // function doFoo(fn) {
+        //     console.log(this)
+        //     fn()
+        // }
+        // var obj = { a: 1, foo }
+        // var a = 2
+        // doFoo(obj.foo)
+
+        // function foo() {
+        //     console.log(this.a)
+        // }
+        // function doFoo(fn) {
+        //     console.log(this)
+        //     fn()
+        // }
+        // var obj = { a: 1, foo }
+        // var a = 2
+        // var obj2 = { a: 3, doFoo }
+
+        // obj2.doFoo(obj.foo)
+
+        // function foo() {
+        //     console.log(this.a)
+        // }
+        // var obj = { a: 1 }
+        // var a = 2
+
+        // foo()
+        // foo.call(obj)
+        // foo.apply(obj)
+        // foo.bind(obj)
+
+        // var obj1 = {
+        //     a: 1
+        // }
+        // var obj2 = {
+        //     a: 2,
+        //     foo1: function () {
+        //         console.log(this.a)
+        //     },
+        //     foo2: function () {
+        //         function inner() {
+        //             console.log(this)
+        //             console.log(this.a)
+        //         }
+        //         inner()
+        //     }
+        // }
+        // var a = 3
+        // obj2.foo1()
+        // obj2.foo2()
+
+
+        // function foo() {
+        //     console.log(this.a)
+        // }
+        // var obj = { a: 1 }
+        // var a = 2
+
+        // foo()
+        // foo.call(obj)
+        // foo().call(obj)
+
+
+        // function foo() {
+        //     console.log(this.a)
+        //     return function () {
+        //         console.log(this.a)
+        //     }
+        // }
+        // var obj = { a: 1 }
+        // var a = 2
+
+        // foo()  //2
+        // foo.call(obj)  //1
+        // foo().call(obj)  // 2  1
+
+
+        // function foo() {
+        //     console.log(this.a)
+        //     return function () {
+        //         console.log(this.a)
+        //     }
+        // }
+        // var obj = { a: 1 }
+        // var a = 2
+
+        // foo.call(obj)()
+
+        // var obj = {
+        //     a: 'obj',
+        //     foo: function () {
+        //         console.log('foo:', this.a)
+        //         return function () {
+        //             console.log('inner:', this.a)
+        //         }
+        //     }
+        // }
+        // var a = 'window'
+        // var obj2 = { a: 'obj2' }
+
+        // obj.foo()()
+        // obj.foo.call(obj2)()
+        // obj.foo().call(obj2)
+
+
+        // var obj = {
+        //     a: 1,
+        //     foo: function (b) {
+        //         b = b || this.a
+        //         return function (c) {
+        //             console.log(this.a + b + c)
+        //         }
+        //     }
+        // }
+        // var a = 2
+        // var obj2 = { a: 3 }
+
+        // obj.foo(a).call(obj2, 1)//6
+        // obj.foo.call(obj2)(1)
+
+        // function foo1() {
+        //     console.log(this.a)
+        // }
+        // var a = 1
+        // var obj = {
+        //     a: 2
+        // }
+
+        // var foo2 = function () {
+        //     foo1.call(obj)
+        // }
+
+        // foo2()
+        // foo2.call(window)
+
+        // var obj = {
+        //     name: 'obj',
+        //     foo1: () => {
+        //         console.log(this.name)
+        //     },
+        //     foo2: function () {
+        //         console.log(this.name)
+        //         return () => {
+        //             console.log(this.name)
+        //         }
+        //     }
+        // }
+        // var name = 'window'
+        // obj.foo1()
+        // obj.foo2()()
+
+        // var name = 'window'
+        // var obj1 = {
+        //     name: 'obj1',
+        //     foo: function () {
+        //         console.log(this.name)
+        //     }
+        // }
+
+        // var obj2 = {
+        //     name: 'obj2',
+        //     foo: () => {
+        //         console.log(this.name)
+        //     }
+        // }
+
+        // obj1.foo()
+        // obj2.foo()
+
+
+        // var name = 'window'
+        // var obj1 = {
+        //     name: 'obj1',
+        //     foo: function () {
+        //         console.log(this.name)
+        //         return function () {
+        //             console.log(this.name)
+        //         }
+        //     }
+        // }
+        // var obj2 = {
+        //     name: 'obj2',
+        //     foo: function () {
+        //         console.log(this.name)
+        //         return () => {
+        //             console.log(this.name)
+        //         }
+        //     }
+        // }
+        // var obj3 = {
+        //     name: 'obj3',
+        //     foo: () => {
+        //         console.log(this.name)
+        //         return function () {
+        //             console.log(this.name)
+        //         }
+        //     }
+        // }
+        // var obj4 = {
+        //     name: 'obj4',
+        //     foo: () => {
+        //         console.log(this.name)
+        //         return () => {
+        //             console.log(this.name)
+        //         }
+        //     }
+        // }
+
+        // obj1.foo()() /// obj1 window
+        // obj2.foo()() // obj2 obj2
+        // obj3.foo()() // window window
+        // obj4.foo()() // window window
+
+        // var name = 'window'
+        // function Person(name) {
+        //     this.name = name
+        //     this.foo1 = function () {
+        //         console.log(this.name)
+        //     }
+        //     this.foo2 = () => {
+        //         console.log(this.name)
+        //     }
+        // }
+        // var person2 = {
+        //     name: 'person2',
+        //     foo2: () => {
+        //         console.log(this.name)
+        //     }
+        // }
+        // var person1 = new Person('person1')
+        // person1.foo1() // 'person1'
+        // person1.foo2() // 'window'
+        // person2.foo2()// 'window' 
+
+
+        // var name = 'window'
+        // function Person(name) {
+        //     this.name = name
+        //     this.foo1 = function () {
+        //         console.log(this.name)
+        //         return function () {
+        //             console.log(this.name)
+        //         }
+        //     }
+        //     this.foo2 = function () {
+        //         console.log(this.name)
+        //         return () => {
+        //             console.log(this.name)
+        //         }
+        //     }
+        //     this.foo3 = () => {
+        //         console.log(this.name)
+        //         return function () {
+        //             console.log(this.name)
+        //         }
+        //     }
+        //     this.foo4 = () => {
+        //         console.log(this.name)
+        //         return () => {
+        //             console.log(this.name)
+        //         }
+        //     }
+        // }
+        // var person1 = new Person('person1')
+        // person1.foo1()() //'person1' 'window'
+        // person1.foo2()() // 'person1' 'person1'
+        // person1.foo3()() // person1 'window'
+        // person1.foo4()()// 'person1' 'person1'
+
+        // var name = 'window'
+        // var obj1 = {
+        //     name: 'obj1',
+        //     foo1: function () {
+        //         console.log(this.name)
+        //         return () => {
+        //             console.log(this.name)
+        //         }
+        //     },
+        //     foo2: () => {
+        //         console.log(this.name)
+        //         return function () {
+        //             console.log(this.name)
+        //         }
+        //     }
+        // }
+        // var obj2 = {
+        //     name: 'obj2'
+        // }
+        // obj1.foo1.call(obj2)()  //obj2 obj2
+        // obj1.foo1().call(obj2) // obj1 obj1
+        // obj1.foo2.call(obj2)() // window window 
+        // obj1.foo2().call(obj2)// window boj2
+
+
+        // var name = 'window'
+        // var person1 = {
+        //     name: 'person1',
+        //     foo1: function () {
+        //         console.log(this.name)
+        //     },
+        //     foo2: () => console.log(this.name),
+        //     foo3: function () {
+        //         return function () {
+        //             console.log(this.name)
+        //         }
+        //     },
+        //     foo4: function () {
+        //         return () => {
+        //             console.log(this.name)
+        //         }
+        //     }
+        // }
+        // var person2 = { name: 'person2' }
+
+        // person1.foo1() // perosn1
+        // person1.foo1.call(person2) // person2
+
+        // person1.foo2() // window
+        // person1.foo2.call(person2) //window
+
+        // person1.foo3()() //window
+        // person1.foo3.call(person2)() // window
+        // person1.foo3().call(person2) //person2
+
+        // person1.foo4()() // person1
+        // person1.foo4.call(person2)() //person2
+        // person1.foo4().call(person2) // person1
+
+        // var name = 'window'
+        // function Person(name) {
+        //     this.name = name
+        //     this.foo1 = function () {
+        //         console.log(this.name)
+        //     },
+        //         this.foo2 = () => console.log(this.name),
+        //         this.foo3 = function () {
+        //             return function () {
+        //                 console.log(this.name)
+        //             }
+        //         },
+        //         this.foo4 = function () {
+        //             return () => {
+        //                 console.log(this.name)
+        //             }
+        //         }
+        // }
+        // var person1 = new Person('person1')
+        // var person2 = new Person('person2')
+
+        // person1.foo1()  //person1
+        // person1.foo1.call(person2) // person2
+
+        // person1.foo2() // person1
+        // person1.foo2.call(person2) // person1
+
+        // person1.foo3()() //window
+        // person1.foo3.call(person2)() // window
+        // person1.foo3().call(person2) //person2
+
+        // person1.foo4()() // person1
+        // person1.foo4.call(person2)() //person2
+        // person1.foo4().call(person2) //person1
+
+        // var name = 'window'
+        // function Person(name) {
+        //     this.name = name
+        //     this.obj = {
+        //         name: 'obj',
+        //         foo1: function () {
+        //             return function () {
+        //                 console.log(this.name)
+        //             }
+        //         },
+        //         foo2: function () {
+        //             return () => {
+        //                 console.log(this.name)
+        //             }
+        //         }
+        //     }
+        // }
+        // var person1 = new Person('person1')
+        // var person2 = new Person('person2')
+
+        // person1.obj.foo1()() //window
+        // person1.obj.foo1.call(person2)() //window
+        // person1.obj.foo1().call(person2) // person2
+
+        // person1.obj.foo2()() // obj
+        // person1.obj.foo2.call(person2)() //window
+        // person1.obj.foo2().call(person2) // obj
+
+
+        function foo() {
+            console.log(this.a);
+        }
+        var a = 2;
+        (function () {
+            "use strict";
+            foo();
+        })();
+    </script>
+</body>
+
+</html>
