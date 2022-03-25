@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="box">设置</button>
+    <button id="box1">查看</button>
+    <script>
+        const set = () => {
+            const now = new Date().getTime();
+            localStorage.setItem("key", JSON.stringify({ value: "data", time: now }));
+        }
+        const get = (key, exp) => {
+            const localData = localStorage.getItem(key);
+            if (!localData) return "";
+            const localDataObj = JSON.parse(localData);
+            const nowTime = new Date().getTime();
+            const localDataTime = localDataObj.time || nowTime;
+            if (nowTime - localDataObj.time > exp) {
+                console.log("数据已过期");
+                // 删除
+                localStorage.removeItem(key);
+                return false;
+            } else {
+                if (!localDataObj.data) return "";
+                const data = JSON.parse(localDataObj.data);
+                return data;
+            }
+        };
+
+        let box = document.getElementById("box");
+        let box1 = document.getElementById("box1");
+        box.addEventListener('click', () => {
+            set()
+        })
+        box1.addEventListener('click',() => {
+            get("key",1000 * 60)
+        })
+    </script>
+</body>
+
+</html>

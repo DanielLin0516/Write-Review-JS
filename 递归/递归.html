@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function TreeNode(val) {
+            this.val = val;
+            this.left = null;
+            this.right = null;
+        }
+        let root = new TreeNode(1);
+        let root1 = new TreeNode(2);
+        let root2 = new TreeNode(3);
+        let root3 = new TreeNode(5);
+        root.left = root1;
+        root.right = root2;
+        root1.right = root3;
+        const dfs = (root) => {
+            if(!root) return;
+            console.log(root.val,'111');
+            dfs(root.left);
+            console.log(root.val,'222');
+            dfs(root.right);
+            console.log(root.val,'333')
+        }
+        dfs(root);
+    </script>
+</body>
+</html>

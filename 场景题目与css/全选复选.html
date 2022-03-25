@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            margin-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" id="box1">点击后全选
+    <input type="checkbox" class="item">商品1
+    <input type="checkbox" class="item">商品2
+    <input type="checkbox" class="item">商品3
+    <input type="checkbox" class="item">商品4
+    <script>
+        let box1 = document.getElementById("box1");
+        let all = document.querySelectorAll(".item");
+        let flag = box1.checked;
+        box1.onclick = () => {
+            flag = box1.checked;
+            console.log(all)
+            for (let i = 0; i < all.length; i++) {
+                all[i].checked = flag;
+            }
+        }
+
+        for (let i = 0; i < all.length; i++) {
+            all[i].onclick = judge
+        }
+        function judge() {
+
+            var flag1 = true;
+            for (let j = 0; j < all.length; j++) {
+                if (!all[j].checked) {
+                    flag1 = false;
+                }
+            }
+            box1.checked = flag1
+        }
+
+    </script>
+</body>
+
+</html>

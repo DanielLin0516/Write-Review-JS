@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const charTxt = "a";
+        let count = (2.5 * 1024 * 1024);
+        let content = new Array(count).fill(charTxt).join("") + 0.1;
+        const key = new Array(count).fill(charTxt).join("");
+        localStorage.clear();
+        try {
+            console.time("setItem")
+            localStorage.setItem(key, content);
+            console.timeEnd("setItem")
+        } catch (err) {
+            console.log("err", err);
+        }
+
+    </script>
+</body>
+
+</html>
