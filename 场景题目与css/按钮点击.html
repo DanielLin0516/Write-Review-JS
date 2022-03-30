@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 按钮，本来文字【点击】，实现点的时候【点击中】，点完一秒变回【点击】 -->
+</head>
+
+<body>
+    <button id="btn">点击</button>
+    <script>
+        // let box1 = document.querySelector(".box1");
+        // function debounce(fn) {
+        //     let timer = null;
+        //     return function () {
+        //         if (timer) {
+        //             this.innerHTML = "点击中"
+        //             clearTimeout(timer);
+        //         }
+        //         timer = setTimeout(() => {
+        //             this.innerHTML = "点击"
+        //             fn.apply(this, arguments);
+        //         }, 1000);
+        //     }
+        // }
+        // box1.addEventListener("click", debounce(function () {
+        //     console.log(1)
+        // }))
+        const btn = document.querySelector("#btn");
+        function debounce(fn, delay) {
+            let timer;
+            return function () {
+                if (timer) {
+                    onClick()
+                    clearInterval(timer)
+                };
+                timer = setTimeout(() => {
+                    fn();
+
+                }, delay);
+            };
+        }
+        function cancle() {
+            btn.textContent = "点击！";
+        }
+        function onClick() {
+            btn.textContent = "点击中";
+        }
+        const debounceFn = debounce(cancle,1000)
+        btn.addEventListener("click", () => {
+            onClick();
+            debounceFn()
+        }, 1000)
+    </script>
+</body>
+
+</html>
