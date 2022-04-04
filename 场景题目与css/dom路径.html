@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <div></div>
+        <div>
+            <p></p>
+            <p id="first">文字</p>
+        </div>
+    </div>
+    <script>
+        const first = document.getElementById('first')
+        function getXpath(dom) {
+            let path = []
+            while (dom) {
+                path.push(dom.tagName)
+                dom = dom.parentNode
+            }
+            return path.reverse().join('>')
+        }
+        console.log(getXpath(first))
+        // 'div-div2-p2'
+
+    </script>
+</body>
+
+</html>
