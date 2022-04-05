@@ -37,3 +37,11 @@ function currying(fn) {
     }
     return closure
 }
+function cuur2(fn) {
+    let ars = [];
+    return function result(...rest) {
+        ars = ars.concat(rest);
+        if(ars.length < fn.length) return result;
+        return fn(...ars)
+    }
+}
