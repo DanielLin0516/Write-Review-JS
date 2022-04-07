@@ -13,14 +13,26 @@
 // 输出："aaabcbc"
 s = "3[a]2[bc]"
 function decodeString(s) {
-    let result = s.split("");
-    let res = {};
-    for (let i = 0; i < result.length; i++) {
-        if(res[result[i]]) {
-
-        }else {
-            res[result[i]] = result[i]
+    let numStack = [];
+    let strStack = [];
+    let num = 0;
+    let str = "";
+    for (let char of s) {
+        if (!isNaN(char)) {
+            num = num * 10 + Number(char);
+        } else if (char === "[") {
+            numStack.push(num);
+            num = 0;
+            strStack.push(str);
+            str = "";
+        } else if (char === "]") {
+            let time = numStack.pop();
+            str = strStack.pop() + str.repeat(time)
+        } else {
+            str = str + char;
         }
     }
+    return str;
 }
+console.log(decodeString(s))
 
