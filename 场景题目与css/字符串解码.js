@@ -35,4 +35,3 @@ function decodeString(s) {
     return str;
 }
 console.log(decodeString(s))
-

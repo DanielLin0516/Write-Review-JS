@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            margin-top: 30px;
+            margin-left: 30px;
+            width: 200px;
+            padding: 20px;
+            height: 200px;
+            background-color: red;
+            border: 20px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+    </div>
+    <script>
+        let box = document.querySelector(".box");
+        console.log("client Height:" + box.clientHeight, "client Width:" + box.clientWidth) // clientHeight clientWidth = content + padding
+        console.log("clientLeft:" + box.clientLeft, "clientTop:" + box.clientTop) // border.top border.left
+        console.log("offsetHeight:" + box.offsetHeight, "offsetWidth" + box.offsetWidth) //offsetHeight offsetWidth = width + padding + border
+        console.log("offsetLeft:" + box.offsetLeft, "offsetTop:" + box.offsetTop) //当前元素的上边框 （左边框） 外边缘到最近的已定位父级（offsetParent）上边框（左边框）内边缘的距离。如果没有定位的父级，则是到body 顶部（左边）的距离
+        console.log("scrollHeight:" + box.scrollHeight, "scrollWidth:" + box.scrollWidth)//获取对象的滚动宽度（高度）
+        console.log("scrollTop:" + box.scrollTop, "scrollLeft:" + box.scrollLeft)//scrollLeft: 设置或获取位于对象左边界和对象中目前可见内容的最左端之间的距离(width+padding)
+    </script>
+</body>
+
+</html>

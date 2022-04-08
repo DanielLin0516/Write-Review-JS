@@ -9,6 +9,8 @@
 </head>
 
 <body>
+    <img src="default.jpg"
+        data-src="https://img0.baidu.com/it/u=3253858440,4174423230&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="">
     <p>ooooooooooooooooooooooo</p>
     <p>ooooooooooooooooooooooo</p>
     <p>ooooooooooooooooooooooo</p>
@@ -29,38 +31,53 @@
     <p>ooooooooooooooooooooooo</p>
     <p>ooooooooooooooooooooooo</p>
     <p>ooooooooooooooooooooooo</p>
-    <img data-src="https://img2.baidu.com/it/u=1814268193,3619863984&fm=253&fmt=auto&app=138&f=JPEG?w=632&h=500" alt="">
-    <img data-src="https://img2.baidu.com/it/u=1814268193,3619863984&fm=253&fmt=auto&app=138&f=JPEG?w=632&h=500" alt="">
-    <img data-src="https://img2.baidu.com/it/u=1814268193,3619863984&fm=253&fmt=auto&app=138&f=JPEG?w=632&h=500" alt="">
+    <img src="default.jpg"
+        data-src="https://img0.baidu.com/it/u=3253858440,4174423230&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="">
+    <img src="default.jpg"
+        data-src="https://img0.baidu.com/it/u=3253858440,4174423230&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="">
     <p>ooooooooooooooooooooooo</p>
     <p>ooooooooooooooooooooooo</p>
     <p>ooooooooooooooooooooooo</p>
     <p>ooooooooooooooooooooooo</p>
-    <img data-src="https://img2.baidu.com/it/u=1814268193,3619863984&fm=253&fmt=auto&app=138&f=JPEG?w=632&h=500" alt="">
-    <img data-src="https://img2.baidu.com/it/u=1814268193,3619863984&fm=253&fmt=auto&app=138&f=JPEG?w=632&h=500" alt="">
-    <img data-src="https://img2.baidu.com/it/u=1814268193,3619863984&fm=253&fmt=auto&app=138&f=JPEG?w=632&h=500" alt="">
-    <img data-src="https://img2.baidu.com/it/u=1814268193,3619863984&fm=253&fmt=auto&app=138&f=JPEG?w=632&h=500" alt="">
+    <img src="default.jpg"
+        data-src="https://img0.baidu.com/it/u=3253858440,4174423230&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="">
+    <img src="default.jpg"
+        data-src="https://img0.baidu.com/it/u=3253858440,4174423230&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="">
+    <img src="default.jpg"
+        data-src="https://img0.baidu.com/it/u=3253858440,4174423230&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="">
+    <img src="default.jpg"
+        data-src="https://img0.baidu.com/it/u=3253858440,4174423230&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="">
     <p>ooooooooooooooooooooooo</p>
     <p>ooooooooooooooooooooooo</p>
     <p>ooooooooooooooooooooooo</p>
     <p>ooooooooooooooooooooooo</p>
     <p>ooooooooooooooooooooooo</p>
-    <img data-src="https://img2.baidu.com/it/u=1814268193,3619863984&fm=253&fmt=auto&app=138&f=JPEG?w=632&h=500" alt="">
-    <img data-src="https://img2.baidu.com/it/u=1814268193,3619863984&fm=253&fmt=auto&app=138&f=JPEG?w=632&h=500" alt="">
-    <img data-src="https://img2.baidu.com/it/u=1814268193,3619863984&fm=253&fmt=auto&app=138&f=JPEG?w=632&h=500" alt="">
+
+    <img src="default.jpg"
+        data-src="https://img0.baidu.com/it/u=3253858440,4174423230&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="">
+    <img src="default.jpg"
+        data-src="https://img0.baidu.com/it/u=3253858440,4174423230&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="">
+    <img src="default.jpg"
+        data-src="https://img0.baidu.com/it/u=3253858440,4174423230&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="">
     <script>
-        let imgs = document.querySelectorAll("img");
-        console.log(imgs)
-        window.addEventListener('scroll',(e) => {
-            imgs.forEach(item => {
-                const imgTop = item.getBoundingClientRect().top
-                if(imgTop < window.innerHeight) {
-                    const data_src = item.getAttribute("data-src");
-                    item.setAttribute("src",data_src);
+        let num = document.getElementsByTagName("img").length
+        let img = document.getElementsByTagName("img")
+        let n = 0;
+        lazy();
+        window.onscroll = lazy;
+        function lazy() {
+            let seeHeight = document.documentElement.clientHeight;
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            for(let i = n; i < num ; i++) {
+                if(seeHeight + scrollTop > img[i].offsetTop) {
+                    if(img[i].getAttribute("src") == "default.jpg") {
+                        img[i].src = img[i].getAttribute("data-src");
+                    }
+                    n = i + 1;
                 }
-                console.log('1')
-            })
-        })
+            }
+        }
+
     </script>
 
 
