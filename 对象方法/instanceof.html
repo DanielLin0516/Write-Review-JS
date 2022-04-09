@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        let arr = [123,1,1]
+        let arr = [123, 1, 1]
         console.log(Object.prototype.toString.call(arr))
-        function myInstanceOf(obj,Fn) {
+        function myInstanceOf(obj, Fn) {
             //获取函数显示原型
             let prototype = Fn.prototype;
             //获取obj饮食原型对象
             let proto = obj.__proto__;
-            while(proto !== null) {
-                if(proto === prototype) {
+            while (proto !== null) {
+                if (proto === prototype) {
                     return true;
                 }
                 //如果不等于
@@ -24,19 +26,20 @@
             }
             return false;
         }
-        console.log(myInstanceOf(arr,Object))
-        const MyInstanceof = (left,right) => {
+        console.log(myInstanceOf(arr, Object))
+        const MyInstanceof = (left, right) => {
             let myPro = right.prototype;
             let prp = left.__proto__;
-            while(prp !== null) {
-                if(prp === myPro) {
+            while (prp !== null) {
+                if (prp === myPro) {
                     return true;
                 }
                 prp = prp.__proto__;
             }
             return false;
         }
-        console.log(MyInstanceof(arr,Function))
+        console.log(MyInstanceof(arr, Function))
     </script>
 </body>
+
 </html>

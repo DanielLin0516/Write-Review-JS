@@ -21,9 +21,9 @@
         }
         function flat3(arr) {
             // 本质和 flat1 一样的，都是递归
-            return arr.reduce((pre, next) => {
-                return pre.concat(Array.isArray(next) ? flat3(next) : next)
-            }, [])
+            return arr.reduce((pre,cur) => {
+                return pre.concat(Array.isArray(cur) ? flat3(cur) : cur);
+            },[])
         }
         console.log(flat3(arr))
     </script>
