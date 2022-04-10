@@ -85,3 +85,22 @@
 // setTimeout(function(){
 //     console.log("3")
 // },0)
+
+const pro = new Promise((resolve,reject) => {
+    console.log('1');
+    setTimeout(() => {
+        console.log('timeout')
+        resolve('2');
+    });
+    reject('2');
+})
+console.log('4');
+pro.then(res => {
+    console.log(res)
+    return '5'
+}).catch(err => {
+    console.log(err)
+    return '6'
+}).then(res => {
+    console.log(res)
+})
