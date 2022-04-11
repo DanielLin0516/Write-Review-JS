@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        inner = 0
+        function say() {
+            console.log(inner)
+            console.log(this.inner)
+        }
+        let obj1 = {
+            inner: '1-1',
+            say() {
+                let inner = '1-2'
+                console.log(inner)
+                console.log(this.inner)
+            }
+        }
+        let obj2 = {
+            inner: '2-1',
+            say() {
+                let inner = '2-2'
+                console.log(inner)
+                console.log(this.inner)
+            }
+        }
+        say()  //0 0 
+        obj1.say() //1-2 1-1
+        obj2.say() // 2-2 2-1
+        obj1.say = say
+        obj1.say() // 0 1-1
+        obj2.say = obj1.say
+        obj2.say() // 0 2-1
+    </script>
+</body>
+
+</html>

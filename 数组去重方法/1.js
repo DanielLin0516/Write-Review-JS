@@ -37,3 +37,4 @@ console.log(unique(arr))
 //数组去重3
 console.log([...new Set(arr)])
 console.log(unique1(arr))
+
