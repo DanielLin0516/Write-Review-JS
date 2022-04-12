@@ -15,15 +15,15 @@ class Vue {
         this.compile(this.$el)
 
     }
-    observer(){
-        for(let key in this.$data){
+    observer() {
+        for (let key in this.$data) {
             let value = this.$data[key]
             let _this = this
-            Object.defineProperty(this.$data,key,{
-                get(){
+            Object.defineProperty(this.$data, key, {
+                get() {
                     return value
                 },
-                set(val){
+                set(val) {
                     value = val
                     // 双向绑定，从所有订阅者，筛选出来要更新的订阅者
                     _this.obj[key].forEach(v => {
@@ -47,7 +47,7 @@ class Vue {
                     nodes[i].value = this[key]
                     nodes[i].addEventListener('input', () => {
                         this[key] = node.value
-                        
+
                     })
                 }
 
@@ -59,14 +59,13 @@ class Vue {
                 let text = nodes[i].textContent
                 let node = nodes[i]
                 let _this = this
-                text.replace(reg, function(a, b)  
-                {
+                text.replace(reg, function (a, b) {
                     // 添加所有订阅者
                     let key = b.trim()
-                    let watcher = new Watcher(_this,b,node,'textContent')
-                    if(_this.obj[key]){
+                    let watcher = new Watcher(_this, b, node, 'textContent')
+                    if (_this.obj[key]) {
                         _this.obj[key].push(watcher)
-                    }else{
+                    } else {
                         _this.obj[key] = []
                         _this.obj[key].push(watcher)
                     }
@@ -74,7 +73,7 @@ class Vue {
                     nodes[i].textContent = _this.$data[b.trim()]
 
                 })
-                
+
             }
 
         }
@@ -93,8 +92,8 @@ class Vue {
         }
     }
 }
-class Watcher{
-    constructor(vm,key,node,attr){
+class Watcher {
+    constructor(vm, key, node, attr) {
         this.vm = vm
         this.key = key
         this.node = node

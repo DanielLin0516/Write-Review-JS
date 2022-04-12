@@ -8,10 +8,10 @@ let arr = [
 ]
 function formate(data) {
     let _data = JSON.parse(JSON.stringify(data));
-    return _data.filter(p => {
-        const arr = _data.filter(c => c.pid === p.id);
-        arr.length && (p.children = arr);
-        return p.pid === 0
+    return _data.filter(item => {
+        const arr = _data.filter(item1 => item1.pid === item.id)
+        arr.length && (item.children = arr);
+        return item.pid === 0;
     })
 }
 console.log(formate(arr))

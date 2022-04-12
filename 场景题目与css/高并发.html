@@ -27,9 +27,9 @@
         async function Process(max = 10) {
             let pools = [];
             let result = [];
-            for(let i = 0 ; i < 100;  i++) {
+            for(let i = 0; i < 100 ;i++) {
                 let p = axiosGet(i).then(res => {
-                    console.log(res,pools.length);
+                    console.log(res)
                     result.push(res);
                     pools.splice(pools.indexOf(p),1);
                 })
@@ -39,11 +39,12 @@
                 }
             }
             await Promise.allSettled(pools);
-            return result;
+            return result
         }
         Process().then(res => {
             console.log(res)
         })
+        
     </script>
 </body>
 
