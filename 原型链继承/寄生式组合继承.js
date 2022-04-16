@@ -24,7 +24,6 @@ inheritPrototype(SubType, SuperType);
 
 // 新增子类原型属性
 SubType.prototype.sayAge = function () {
-    z
     alert(this.age);
 }
 

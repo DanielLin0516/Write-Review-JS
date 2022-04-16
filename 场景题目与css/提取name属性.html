@@ -44,22 +44,20 @@
         ]
         function getName(data, key = "name") {
             let result = [];
-            if (Array.isArray(data)) {
-                for (let item of data) {
-                    if (item[key]) {
-                        result.push(item[key]);
-                    }
-                    if (item.children) {
+            if(Array.isArray(data)) {
+                data.forEach(item => {
+                    if(item.name) result = result.concat(item.name);
+                    if(item.children) {
                         result = result.concat(getName(item.children));
-                    }
-                }
+                    } 
+                })
                 return result;
-            } else {
-                return result;
+            }else {
+                return data;
             }
         }
-
         console.log(getName(data))
+        
     </script>
 </body>
 

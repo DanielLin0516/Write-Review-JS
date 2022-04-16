@@ -13,17 +13,17 @@
     <input type="text" id="hinput">
     <script>
         const input = document.getElementById('hinput')
-        function debounce(fn,delay){
+        function debounce(fn,delay) {
             let timer = null;
-            return function(){
-                if(timer){
+            return function () {
+                if(timer) {
                     clearTimeout(timer);
                 }
                 timer = setTimeout(() => {
-                    fn.apply(this,arguments)
-                }, delay);
+                    fn.call(this,arguments)
+                },delay)
             }
-        }
+        }             
         input.addEventListener('input',debounce(function(e){
             console.log(e)
             console.log(this)

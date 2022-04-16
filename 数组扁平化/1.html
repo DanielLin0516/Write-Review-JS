@@ -12,19 +12,18 @@
     <script>
         let arr = [1, 2, [3, 4, [5, 6]], 7]
         function flatten(arr) {
-            //声明一个空数组
             let result = [];
-            //遍历数组
             arr.forEach(item => {
-                //判断是否维数组
-                if (Array.isArray(item)) {
-                    result = result.concat(flatten(item));
-                } else {
-                    result = result.concat(item);
+                if(Array.isArray(item)) {
+                    result = result.concat(flatten(item))
+                }else {
+                    result = result.concat(item)
                 }
-            });
+            })
             return result;
         }
+        console.log(flatten(arr))
+
     </script>
 </body>
 </html>

@@ -65,27 +65,78 @@
 
 
 //事件总线
-class EventEmiter {
-    constructor() {
-        this.cache = {}
-    }
-    on(channel, callback) {
-        if (this.cache[channel]) {
-            this.cache[channel].push(callback);
-        } else {
-            this.cache[channel] = [callback]
+// class EventEmiter {
+//     constructor() {
+//         this.cache = {}
+//     }
+//     on(channel, callback) {
+//         if (this.cache[channel]) {
+//             this.cache[channel].push(callback);
+//         } else {
+//             this.cache[channel] = [callback]
+//         }
+//     }
+//     emit(channel, ...args) {
+//         if (this.cache[channel] && this.cache[channel].length > 0) {
+//             this.cache[channel].forEach(element => {
+//                 element(...args)
+//             });
+//         }
+//     }
+// }
+// let bus = new EventEmiter();
+// bus.on("pp",(id) => {
+//     console.log(id)
+// })
+// bus.emit("pp","okok")
+
+const sum = (a, b, c) => {
+    return a + b + c
+}
+const curry = (fn) => {
+    let args = [];
+    let len = fn.length;
+    return function result(...rest) {
+        args = args.concat(rest);
+        if (args.length === len) {
+            return fn(...args)
         }
+        return result;
     }
-    emit(channel, ...args) {
-        if (this.cache[channel] && this.cache[channel].length > 0) {
-            this.cache[channel].forEach(element => {
-                element(...args)
-            });
+}
+console.log(curry(sum)(4, 2)(3))
+
+const currySum = (...args) => {
+    return args.reduce((prev, cur) => {
+        return prev + cur
+    }, 0)
+}
+const curry1 = (fn) => {
+    let args = [];
+    return function result(...rest) {
+        if (rest.length === 0) {
+            return fn(...args);
+        } else {
+            args = args.concat(rest);
+            return result;
         }
     }
 }
-let bus = new EventEmiter();
-bus.on("pp",(id) => {
-    console.log(id)
-})
-bus.emit("pp","okok")
+console.log(curry1(currySum)(1, 2, 3)(4, 5)())
+
+Function.prototype.Mycall = function (target, ...args) {
+    if (typeof this === 'function') {
+        target = target || window;
+        target.fn = this;
+        let result = target.fn(...args);
+        return result;
+    } else {
+
+    }
+}
+obj = { a: 1 };
+var a = 1;
+function sleep() {
+    console.log(this.a)
+}
+sleep()

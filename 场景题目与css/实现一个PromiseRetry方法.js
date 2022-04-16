@@ -15,12 +15,12 @@ Promise.retry = (fn, times) => {
         while (times--) {
             try {
                 const res = await fn();
-                console.log('成功了结果为',res);
+                console.log('成功了结果为', res);
                 resolve(res);
                 break;
             } catch (error) {
-                console.log('失败',error);
-                if(!times) {
+                console.log('失败', error);
+                if (!times) {
                     reject(error)
                 }
             }

@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        function newInstance(Fn,...args) {
-            const obj = {};
-            const result = Fn.call(obj,...args);
-            obj.__proto__ = Fn.prototype
+        function Mynew(Fn, ...args) {
+            let obj = {};
+            obj.__proto__ = Fn.prototype;
+            let result = Fn.call(obj, ...args);
             return result instanceof Object ? result : obj;
         }
-        function Person(name,age) {
+        function Person(name, age) {
             this.name = name;
             this.age = age;
         }
-        let obj = newInstance(Person,'张三',18);
+        let obj = Mynew(Person, '张三', 18);
         console.log(obj)
     </script>
 </body>
+
 </html>

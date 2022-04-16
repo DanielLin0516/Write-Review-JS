@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="div">
+    <span>
+      <a></a>
+    </span>
+    <span>
+      <a></a>
+      <a></a>
+    </span>
+  </div>
+  <script>
+      let div = document.querySelector('div');
+      const domToJson = (dom) => {
+        let obj = {};
+        obj.name = dom.tagName;
+        obj.children = [];
+        dom.childNodes.forEach(child => {
+          obj.children.push(domToJson(child));
+        })
+        return obj;
+      }
+      console.log(domToJson(div));
+  </script>
+</body>
+
+</html>
