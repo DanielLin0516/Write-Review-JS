@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100%;
+            display: table;
+        }
+
+        .box > div {
+            display: table-column;
+        }
+
+        .left {
+            width: 100px;
+            background-color: red;
+        }
+
+        .content {
+            background-color: yellow;
+        }
+
+        .right {
+            width: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="left">1</div>
+        <div class="content">2</div>
+        <div class="right">3</div>
+    </div>
+
+</body>
+
+</html>
