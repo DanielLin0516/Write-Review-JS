@@ -67,11 +67,11 @@
         window.onscroll = lazy;
         function lazy() {
             let seeHeight = document.documentElement.clientHeight;
-            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            for(let i = n; i < num ; i++) {
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+            for(let i = n ; i < n ; i++) {
                 if(seeHeight + scrollTop > img[i].offsetTop) {
-                    if(img[i].getAttribute("src") == "default.jpg") {
-                        img[i].src = img[i].getAttribute("data-src");
+                    if(img[i].getAttribute("src") === "default.jpg") {
+                        img[i].src = img[i].getAttribute("data-src")
                     }
                     n = i + 1;
                 }

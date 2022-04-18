@@ -17,19 +17,20 @@ function decodeString(s) {
     let strStack = [];
     let num = 0;
     let str = "";
-    for (let char of s) {
-        if (!isNaN(char)) {
+    for(let char of s) {
+        if(!isNaN(char)) {
             num = num * 10 + Number(char);
-        } else if (char === "[") {
+        }else if(char === "[") {
             numStack.push(num);
             num = 0;
             strStack.push(str);
             str = "";
-        } else if (char === "]") {
+        }else if(char === "]") {
             let time = numStack.pop();
-            str = strStack.pop() + str.repeat(time)
-        } else {
-            str = str + char;
+            str = strStack.pop() + str.repeat(time);
+            console.log(str)
+        }else {
+            str = str + char
         }
     }
     return str;

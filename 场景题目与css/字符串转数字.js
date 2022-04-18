@@ -1,4 +1,3 @@
-
 let str = "[abc[bcd[def]]]"
 
 function normallize() {

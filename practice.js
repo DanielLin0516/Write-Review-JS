@@ -149,14 +149,39 @@
 // for(let item of Object.keys(obj1)) [
 //     console.log(item)
 // ]
-const bag = () => {
-    var i = 0
-    return function() {
-        i = i + 1;
-        console.log(i)
-    }
+// const bag = () => {
+//     var i = 0
+//     return function() {
+//         i = i + 1;
+//         console.log(i)
+//     }
+// }
+// let deal = bag()
+// deal()
+// deal()
+// deal()
+// const value = new Map();
+// value.set("1","2");
+
+let arr = [
+    { id: 1, name: '部门1', pid: 0 },
+    { id: 2, name: '部门2', pid: 1 },
+    { id: 3, name: '部门3', pid: 1 },
+    { id: 4, name: '部门4', pid: 3 },
+    { id: 5, name: '部门5', pid: 4 },
+    { id: 6, name: '部门6', pid: 0 },
+]
+function formate(arr) {
+    let data = JSON.parse(JSON.stringify(arr));
+    let result = data.filter(item => {
+        const children = data.filter(item1 => item1.pid === item.id)
+        if(item.children) {
+            item.children.push(...children)
+        }else {
+            item.children = children
+        }
+        return item.pid === 0
+    })
+    return result
 }
-let deal = bag()
-deal()
-deal()
-deal()
+console.log(formate(arr))
