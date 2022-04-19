@@ -163,25 +163,87 @@
 // const value = new Map();
 // value.set("1","2");
 
-let arr = [
-    { id: 1, name: '部门1', pid: 0 },
-    { id: 2, name: '部门2', pid: 1 },
-    { id: 3, name: '部门3', pid: 1 },
-    { id: 4, name: '部门4', pid: 3 },
-    { id: 5, name: '部门5', pid: 4 },
-    { id: 6, name: '部门6', pid: 0 },
-]
-function formate(arr) {
-    let data = JSON.parse(JSON.stringify(arr));
-    let result = data.filter(item => {
-        const children = data.filter(item1 => item1.pid === item.id)
-        if(item.children) {
-            item.children.push(...children)
-        }else {
-            item.children = children
-        }
-        return item.pid === 0
-    })
-    return result
+// let arr = [
+//     { id: 1, name: '部门1', pid: 0 },
+//     { id: 2, name: '部门2', pid: 1 },
+//     { id: 3, name: '部门3', pid: 1 },
+//     { id: 4, name: '部门4', pid: 3 },
+//     { id: 5, name: '部门5', pid: 4 },
+//     { id: 6, name: '部门6', pid: 0 },
+// ]
+// function formate(arr) {
+//     let data = JSON.parse(JSON.stringify(arr));
+//     let result = data.filter(item => {
+//         const children = data.filter(item1 => item1.pid === item.id)
+//         if(item.children) {
+//             item.children.push(...children)
+//         }else {
+//             item.children = children
+//         }
+//         return item.pid === 0
+//     })
+//     return result
+// }
+// console.log(formate(arr))
+const currySum = (...args) => {
+    return args.reduce((pre, cur) => {
+        return pre + cur
+    }, 0)
 }
-console.log(formate(arr))
+function curry(fn) {
+    let args = [];
+    return function result(...rest) {
+        if (rest.length === 0) {
+            return fn(...args);
+        } else {
+            args.push(...rest);
+            return result;
+        }
+    }
+}
+
+console.log(curry(currySum)(1)(2)(3)())
+function deep(target, map = new Map()) {
+    if (typeof target === 'object' && target !== null) {
+        let cache = map.get(target);
+        if (cache) {
+            return cache;
+        }
+        let result = Array.isArray(target) ? [] : {};
+        map.set(target, result)
+        for (let key in target) {
+            if (target.hasOwnProperty(key)) {
+                result[key] = deep(target[key])
+            }
+        }
+        return result;
+    } else {
+        return target
+    }
+}
+class EventEmiter {
+    constructor() {
+        this.callbacks = {}
+    }
+    on(name, callback) {
+        if (this.callbacks[name]) {
+            this.callbacks[name].push(callback);
+        } else {
+            this.callbacks[name] = [callback]
+        }
+    }
+    emit(name,...args) {
+        if(this.callbacks[name]) {
+            this.callbacks.forEach(call => {
+                call(...args);
+            })
+        }
+    }
+    remove(name,call) {
+        if(name) {
+            delete this.callbacks[name];
+        }else {
+            this.callbacks = {}
+        }
+    }
+}
