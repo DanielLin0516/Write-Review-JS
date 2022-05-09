@@ -49,4 +49,20 @@ console.log(number1.replace(/\W/g, "❤️")) //点被匹配
 
 
 // 第一题 将123456789转化为123,456,789
-console.log("123456789".replace(/(?!^)(?=(\d{3})+$)/g,","))
+console.log("123456789".replace(/(?!^)(?=(\d{3})+$)/g, ","))
+
+//将手机号18379836654转化为183-7983-6654
+let mobile = '18379836654'
+let mobileReg = /(?=(\d{4})+$)/g
+
+console.log(mobile.replace(mobileReg, '-'))
+
+//模糊匹配  横向匹配
+let reg = /ab{2,3}c/g
+let str6 = 'abc abbc abbbc abbbbc abbbbbc abbbbbbc cda'
+console.log(str6.match(reg))
+
+//纵向匹配
+let reg1 = /a[123]b/g
+let str7 = 'a0b a1b a2b a3b a4b'
+console.log(str7.match(reg1))
